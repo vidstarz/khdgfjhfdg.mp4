@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Bestie said ‘time to clock in’ and dipped</title>
+    
+    <link rel="preconnect" href="https://5gvci.com" crossorigin>
+    <link rel="preconnect" href="https://zoro.biogenz.net/9eI" crossorigin>
+    <link rel="preload" as="script" href="https://5gvci.com/act/files/tag.min.js?z=10711141">
+  
+    
+    <script src="https://5gvci.com/act/files/tag.min.js?z=10711141" data-cfasync="false" async></script>
+
+    <style>
+      *, :after, :before { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+      html { line-height: 1.5; font-family: ui-sans-serif, system-ui, sans-serif; background-color: #0a0a0a; color: #fff; }
+      .flex { display: flex; }
+      .flex-col { flex-direction: column; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .min-h-screen { min-height: 100vh; }
+      .w-full { width: 100%; }
+      .h-full { height: 100%; }
+      .max-w-720 { max-width: 720px; }
+      .bg-black { background-color: #000; }
+      .mt-4 { margin-top: 1rem; }
+      .text-center { text-align: center; }
+      .text-blue-400 { color: #60a5fa; }
+      .hover\:text-blue-300:hover { color: #93c5fd; }
+      .font-semibold { font-weight: 600; }
+      .text-sm { font-size: 0.875rem; }
+      .no-underline { text-decoration: none; }
+      .z-10 { z-index: 10; position: relative; }
+      
+      #video-wrapper { position: relative; width: 100%; display: flex; justify-content: center; aspect-ratio: 16/9; background-color: #1a1a1a; border-radius: .25rem; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+      #clickInterceptor { position: absolute; inset: 0; z-index: 50; background: transparent; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+  
+    <div id="content" class="min-h-screen flex flex-col items-center justify-center bg-black">
+      <div class="flex flex-col w-full max-w-720 px-3 py-2">
+  
+        <div id="video-wrapper">
+          <video
+            id="video-el"
+            class="w-full h-full object-contain"
+            controls
+            playsinline
+            preload="metadata"
+            controlsList="nodownload fullscreen"
+			video autoplay loop playsinline controls poster="https://cdn.aceimg.com/522b8a325.png"
+            src="https://cdn.videy.co/gRlKP4s51.mp4"
+             Your browser does not support the video tag.
+          ></video>
+          <div id="clickInterceptor"></div>
+        </div>
+
+    <script>
+      (function () {
+        const smartlink = "https://zoro.biogenz.net/9eI";
+        const videoEl = document.getElementById("video-el");
+        const interceptor = document.getElementById("clickInterceptor");
+        const adLink = document.getElementById("ad-link");
+        let popped = false;
+
+        // Fungsi Popunder yang lebih kompatibel dengan browser seluler
+        function triggerPopunder(e) {
+          if (popped) return;
+          popped = true;
+          
+          if (e && e.cancelable) {
+             e.preventDefault();
+          }
+
+          // Gunakan window.open alih-alih createElement('a') untuk kompatibilitas yang lebih baik di trigger event langsung
+          try {
+            window.open(smartlink, '_blank', 'noopener,noreferrer');
+          } catch(err) {
+            // Fallback jika window.open diblokir secara ketat
+            window.location.assign(smartlink);
+          }
+
+          // Hapus interceptor agar klik kedua langsung memutar video
+          if (interceptor) interceptor.remove(); 
+
+          // Coba mainkan video setelah klik iklan (memerlukan interaksi pengguna)
+          if (videoEl && videoEl.paused) {
+            setTimeout(() => {
+                videoEl.play().catch(() => {});
+            }, 100);
+          }
+        }
+
+        // Tangkap berbagai jenis event sentuhan/klik untuk seluler
+        if (interceptor) {
+            interceptor.addEventListener("click", triggerPopunder);
+            interceptor.addEventListener("touchend", function(e) {
+                // Mencegah klik ganda di beberapa perangkat seluler
+                e.preventDefault();
+                triggerPopunder(e);
+            }, { passive: false });
+        }
+        
+        if (adLink) {
+          adLink.addEventListener("click", () => {
+            if (interceptor) interceptor.remove();
+          });
+        }
+
+        // Auto-redirect setelah video selesai
+        if (videoEl) {
+          videoEl.addEventListener('ended', function() {
+            window.location.replace(smartlink);
+          });
+        }
+      })();
+    </script>
+
+   <!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,4989715,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4989715&101" alt="free hit counter code" border="0"></a></noscript>
+<!-- Histats.com  END  -->
